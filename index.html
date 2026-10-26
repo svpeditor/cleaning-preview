@@ -19,74 +19,136 @@
   <meta name="theme-color" content="#0B7A75">
   <script type="application/ld+json">{"@context":"https://schema.org","@type":"LocalBusiness","name":"Клининг Левкин","description":"Уборка квартир, домов, офисов и производственных помещений: поддерживающая и генеральная уборка, уборка после ремонта.","areaServed":"Москва и Московская область","address":{"@type":"PostalAddress","addressLocality":"Москва","addressCountry":"RU"}}</script>
   <link rel="preload" href="assets/fonts/onest-var-cyrillic.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="assets/fonts/onest-var-latin.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="assets/img/hero/hero-1-kitchen-portrait.webp?v=10d0aec0" as="image" media="(max-width: 767px)" fetchpriority="high">
   <link rel="preload" href="assets/img/hero/hero-1-kitchen.webp?v=1b3ae4da" as="image" media="(min-width: 768px)" fetchpriority="high">
   <link rel="stylesheet" href="assets/css/styles.min.css?v=0a87879379">
 </head>
 <body>
   <div id="pl" aria-hidden="true">
-    <div class="pl-box">
-      <span class="pl-mark">К<em>л</em></span>
-      <span class="pl-name">Клининг Левкин</span>
+    <div class="pl-in">
+      <div class="pl-c">
+        <span class="pl-mk"><span class="pl-mark" id="pl-mark">К<em>л</em></span></span>
+        <span class="pl-name">Клининг Левкин</span>
+        <span class="pl-bar"><i id="pl-fill"></i></span>
+      </div>
+      <div class="pl-foot">
+        <span>Москва и область</span>
+        <span class="pl-num" id="pl-num">000</span>
+      </div>
     </div>
-    <span class="pl-blade"></span>
   </div>
   <style>
-    /* Заставка: белая вуаль, знак «протирается» слева направо, как стекло под сгоном.
-       Снимается, когда готовы шрифты, страница и фон первого экрана, не раньше минимума
-       и не позже 3,5 с. Второй заход в сессии - коротко. Без JS и при reduced-motion
-       вуали нет. Страховка на CSS: через 6 с исчезает сама. */
+    /* Заставка: тёмная шторка, знак «Кл» из «металла» выезжает снизу, по нему проходит блик, как по
+       только что вымытому стеклу; название проявляется с разрядкой, тонкая полоса и счётчик идут от
+       реальной загрузки (шрифты, страница, фото первого экрана). Не раньше минимума, не позже 3 с.
+       Потом шторка уезжает вверх с изогнутым краем, под ней первый экран: фото «оседает», текст
+       поднимается. Второй заход в сессии - коротко. Без JS и при reduced-motion заставки нет.
+       Страховка на CSS: через 7 с исчезает сама. */
     html:not(.js) #pl{display:none}
-    #pl{position:fixed;inset:0;z-index:9999;background:#fff;display:flex;align-items:center;justify-content:center;
-      transition:opacity .7s cubic-bezier(.2,.7,.2,1),visibility .7s;animation:plKill 0s linear 6s forwards}
-    #pl.pl--out{opacity:0;visibility:hidden;pointer-events:none}
-    .pl-box{display:flex;flex-direction:column;align-items:center;gap:14px;
-      -webkit-mask-image:linear-gradient(90deg,#000 0,#000 45%,transparent 55%,transparent 100%);mask-image:linear-gradient(90deg,#000 0,#000 45%,transparent 55%,transparent 100%);
-      -webkit-mask-size:240% 100%;mask-size:240% 100%;-webkit-mask-position:100% 0;mask-position:100% 0;
-      animation:plWipe .8s cubic-bezier(.65,.05,.25,1) .05s forwards}
-    .pl-mark{font:600 64px/1 'Onest',system-ui,sans-serif;letter-spacing:-.05em;color:#0E1A21}
-    .pl-mark em{font-style:normal;color:#0B7A75}
-    .pl-name{font:600 11px/1 'Onest',system-ui,sans-serif;letter-spacing:.32em;text-transform:uppercase;color:#44535B}
-    .pl-blade{position:absolute;left:50%;top:50%;width:2px;height:132px;margin:-66px 0 0 -1px;background:#0B7A75;
-      opacity:0;transform:translateX(-150px);animation:plBlade .8s cubic-bezier(.65,.05,.25,1) .05s forwards}
-    #pl.pl--quick .pl-box,#pl.pl--quick .pl-blade{animation-duration:.45s;animation-delay:0s}
-    @keyframes plWipe{to{-webkit-mask-position:0 0;mask-position:0 0}}
-    @keyframes plBlade{0%{opacity:0;transform:translateX(-150px)}15%{opacity:1}85%{opacity:1}100%{opacity:0;transform:translateX(150px)}}
+    #pl{position:fixed;inset:0;z-index:9999;background:#0B1418;color:#fff;font-family:'Onest',system-ui,sans-serif;
+      animation:plKill 0s linear 7s forwards}
+    #pl::before{content:'';position:absolute;inset:0;pointer-events:none;
+      background:radial-gradient(44% 38% at 50% 46%,rgba(95,211,200,.12),rgba(95,211,200,0) 100%)}
+    #pl::after{content:'';position:absolute;left:-20%;right:-20%;top:calc(100% - 1px);height:24vh;background:#0B1418;
+      border-radius:0 0 50% 50%/0 0 100% 100%;transform:scaleY(0);transform-origin:50% 0}
+    .pl-in{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;
+      transition:opacity .35s cubic-bezier(.4,0,.2,1),transform .9s cubic-bezier(.6,0,.2,1)}
+    .pl-c{display:flex;flex-direction:column;align-items:center}
+    .pl-mk{display:block;overflow:hidden;padding:.04em .1em .14em}
+    .pl-mark{position:relative;display:block;white-space:nowrap;font-weight:600;font-size:clamp(84px,11vw,136px);
+      line-height:1;letter-spacing:-.055em;color:transparent;
+      background:linear-gradient(180deg,#fff 12%,#DCE7EA 55%,#A3B7BC 100%);-webkit-background-clip:text;background-clip:text;
+      transform:translateY(110%);animation:plRise 1.05s cubic-bezier(.16,1,.3,1) .1s forwards}
+    .pl-mark em{font-style:normal;color:#5FD3C8}
+    .pl-mark::after{content:attr(data-t);position:absolute;left:0;top:0;white-space:nowrap;color:transparent;
+      background:linear-gradient(105deg,rgba(255,255,255,0) 42%,rgba(255,255,255,.95) 50%,rgba(255,255,255,0) 58%) 130% 0/320% 100% no-repeat;
+      -webkit-background-clip:text;background-clip:text;animation:plShine 2.6s cubic-bezier(.45,0,.25,1) .55s infinite}
+    .pl-name{margin-top:20px;font-weight:500;font-size:11px;line-height:1;text-transform:uppercase;white-space:nowrap;
+      color:rgba(255,255,255,.74);letter-spacing:.42em;padding-left:.42em;opacity:0;
+      animation:plTrack 1.5s cubic-bezier(.16,1,.3,1) .35s forwards}
+    .pl-bar{position:relative;display:block;width:clamp(150px,22vw,240px);height:1px;margin-top:34px;overflow:hidden;
+      background:rgba(255,255,255,.14);transform:scaleX(0);animation:plGrow .9s cubic-bezier(.16,1,.3,1) .5s forwards}
+    .pl-bar i{position:absolute;inset:0;background:linear-gradient(90deg,#2E9F95,#5FD3C8 60%,#fff);
+      transform:scaleX(0);transform-origin:0 50%}
+    .pl-foot{position:absolute;left:clamp(20px,4vw,56px);right:clamp(20px,4vw,56px);bottom:clamp(22px,4vw,44px);
+      display:flex;justify-content:space-between;align-items:baseline;font-weight:500;font-size:11px;line-height:1;
+      letter-spacing:.28em;text-transform:uppercase;color:rgba(255,255,255,.58);opacity:0;animation:plIn .9s ease .6s forwards}
+    .pl-num{font-variant-numeric:tabular-nums;letter-spacing:.18em;color:rgba(255,255,255,.82)}
+    #pl.pl--quick .pl-mark,#pl.pl--quick .pl-bar{transform:none;animation:none}
+    #pl.pl--quick .pl-mark::after{animation:none}
+    #pl.pl--quick .pl-name,#pl.pl--quick .pl-foot{opacity:1;animation:none}
+    #pl.pl--leave .pl-in{opacity:0;transform:translateY(-8vh)}
+    #pl.pl--lift{transform:translateY(-100%);transition:transform 1s cubic-bezier(.6,0,.2,1);pointer-events:none}
+    #pl.pl--lift::after{animation:plLip 1s cubic-bezier(.6,0,.2,1) forwards}
+    #pl.pl--quick.pl--lift{transition-duration:.75s}
+    #pl.pl--quick.pl--lift::after{animation-duration:.75s}
+    @keyframes plRise{to{transform:translateY(0)}}
+    @keyframes plShine{0%{background-position:130% 0}48%,100%{background-position:-30% 0}}
+    @keyframes plTrack{from{opacity:0;letter-spacing:.95em;padding-left:.95em}to{opacity:1;letter-spacing:.42em;padding-left:.42em}}
+    @keyframes plGrow{to{transform:scaleX(1)}}
+    @keyframes plIn{from{opacity:0}to{opacity:1}}
+    @keyframes plLip{0%{transform:scaleY(0)}45%{transform:scaleY(1)}100%{transform:scaleY(0)}}
     @keyframes plKill{to{opacity:0;visibility:hidden;pointer-events:none}}
     @media(prefers-reduced-motion:reduce){#pl{display:none}}
-    html.js:not(.pl-done) body>*:not(#pl){opacity:0;animation:plShow 0s linear 6.2s forwards}
+    html.js:not(.pl-done) body>*:not(#pl){opacity:0;animation:plShow 0s linear 7.2s forwards}
     @keyframes plShow{to{opacity:1}}
-    html.js.pl-done body>*:not(#pl):not(.mobile-menu){animation:bodyIn .5s cubic-bezier(.2,.7,.2,1) backwards}
+    /* первый экран не мигает: он уже стоит под шторкой, остальное проявляется */
+    html.js.pl-done body>*:not(#pl):not(.mobile-menu):not(.hero){animation:bodyIn .5s cubic-bezier(.2,.7,.2,1) backwards}
     @keyframes bodyIn{from{opacity:0}to{opacity:1}}
+    @media(prefers-reduced-motion:no-preference){
+      html.pl-done .hero-bg{animation:plSettle 1.9s cubic-bezier(.2,.7,.2,1) backwards}
+      html.pl-done .hero-content>*{animation:plUp 1.1s cubic-bezier(.16,1,.3,1) backwards}
+      html.pl-done .hero-content>:nth-child(1){animation-delay:.35s}
+      html.pl-done .hero-content>:nth-child(2){animation-delay:.43s}
+      html.pl-done .hero-content>:nth-child(3){animation-delay:.51s}
+      html.pl-done .hero-content>:nth-child(4){animation-delay:.59s}
+      html.pl-done .hero .mono,html.pl-done .hero .topnav,html.pl-done .hero-meta{animation:plIn .9s ease .6s backwards}
+    }
+    @keyframes plSettle{from{transform:scale(1.12)}}
+    @keyframes plUp{from{opacity:0;transform:translateY(34px)}}
     @media(prefers-reduced-motion:reduce){html.js:not(.pl-done) body>*:not(#pl){opacity:1;animation:none}}
   </style>
   <script>
   (function(){
     var d=document.documentElement; d.classList.add('js');
     var pl=document.getElementById('pl'); if(!pl) return;
+    var mark=document.getElementById('pl-mark'), num=document.getElementById('pl-num'), fill=document.getElementById('pl-fill');
+    mark.setAttribute('data-t',mark.textContent);
     var quick=false; try{ quick=sessionStorage.getItem('pl_seen')==='1'; }catch(e){}
     if(quick) pl.classList.add('pl--quick');
     var rm=window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    // отсчёт от начала загрузки страницы, а не от момента, когда дошёл этот скрипт
-    var t0=(window.performance&&performance.timing&&performance.timing.navigationStart)||Date.now();
-    var minMs=rm?0:(quick?300:850), start=t0, ready=rm, out=false;
-    function done(){
-      if(out) return; out=true;
-      pl.classList.add('pl--out'); d.classList.add('pl-done');
+    function remove(){ if(pl.parentNode) pl.parentNode.removeChild(pl); }
+    if(rm){ d.classList.add('pl-done'); remove(); return; }
+    // время - от начала загрузки страницы (performance.now), а не от момента, когда дошёл этот скрипт
+    var minMs=quick?450:1750, s0=performance.now(), ready=false, out=false, v=0, total=0, got=0;
+    function leave(){
+      pl.classList.add('pl--leave','pl--lift'); d.classList.add('pl-done');
       try{ sessionStorage.setItem('pl_seen','1'); }catch(e){}
-      setTimeout(function(){ if(pl.parentNode) pl.parentNode.removeChild(pl); },900);
+      setTimeout(remove,1150);
     }
-    function tick(){ var el=Date.now()-start; if(ready&&el>=minMs) done(); else setTimeout(tick,Math.max(40,minMs-el)); }
+    // счётчик: реальные шаги загрузки + плавный ход по времени, до готовности не выше 94
+    function frame(){
+      if(out) return;
+      var el=performance.now(), fin=ready&&el>=minMs;
+      var t=fin?100:Math.min(94,22*got/Math.max(1,total)+72*(1-Math.exp(-(el-s0)/(quick?250:850))));
+      v+=(t-v)*(fin?.22:.09); if(fin&&v>99.5) v=100;
+      num.textContent=('00'+Math.floor(v)).slice(-3);
+      fill.style.transform='scaleX('+(v/100).toFixed(4)+')';
+      if(v===100){ out=true; setTimeout(leave,quick?40:160); return; }
+      requestAnimationFrame(frame);
+    }
+    function step(p){ total++; p.then(function(){ got++; },function(){ got++; }); return p; }
     var waits=[];
-    if(document.fonts&&document.fonts.ready) waits.push(document.fonts.ready);
-    waits.push(new Promise(function(r){ if(document.readyState==='complete') r(); else window.addEventListener('load',r,{once:true}); }));
+    if(document.fonts&&document.fonts.ready) waits.push(step(document.fonts.ready));
+    waits.push(step(new Promise(function(r){ if(document.readyState==='complete') r(); else window.addEventListener('load',r,{once:true}); })));
     var bg=document.querySelector('[data-preload]');
-    if(bg){ waits.push(new Promise(function(r){ var src=bg.getAttribute('data-preload');
+    if(bg){ waits.push(step(new Promise(function(r){ var src=bg.getAttribute('data-preload');
       if(window.matchMedia('(max-width: 767px)').matches) src=src.replace('.webp','-portrait.webp');
-      var i=new Image(); i.onload=i.onerror=r; i.src=src; })); }
+      var i=new Image(); i.onload=i.onerror=r; i.src=src; }))); }
     Promise.all(waits).then(function(){ ready=true; },function(){ ready=true; });
-    setTimeout(function(){ ready=true; },Math.max(0,2500-(Date.now()-t0)));
-    tick();
+    setTimeout(function(){ ready=true; },Math.max(0,3000-performance.now()));
+    requestAnimationFrame(frame);
   })();
   </script>
 
