@@ -1,0 +1,545 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Клининг Левкин - уборка квартир, домов, офисов и производственных помещений</title>
+  <meta name="description" content="Клининг для квартир, домов, офисов, цехов и складов: поддерживающая и генеральная уборка, уборка после ремонта. Москва и Московская область.">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="ru_RU">
+  <meta property="og:site_name" content="Клининг Левкин">
+  <meta property="og:title" content="Клининг Левкин - уборка жилых и производственных помещений">
+  <meta property="og:description" content="Квартиры и дома, офисы, цеха и склады. Поддерживающая и генеральная уборка, уборка после ремонта.">
+  <meta property="og:image" content="https://svpeditor.github.io/cleaning-preview/assets/img/og.jpg?v=91492d37">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="robots" content="noindex,nofollow">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="favicon.ico" sizes="32x32">
+  <link rel="apple-touch-icon" href="apple-touch-icon.png">
+  <meta name="theme-color" content="#0B7A75">
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"LocalBusiness","name":"Клининг Левкин","description":"Уборка квартир, домов, офисов и производственных помещений: поддерживающая и генеральная уборка, уборка после ремонта.","areaServed":"Москва и Московская область","address":{"@type":"PostalAddress","addressLocality":"Москва","addressCountry":"RU"}}</script>
+  <link rel="preload" href="assets/fonts/onest-var-cyrillic.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="assets/img/hero/hero-1-kitchen-portrait.webp?v=10d0aec0" as="image" media="(max-width: 767px)" fetchpriority="high">
+  <link rel="preload" href="assets/img/hero/hero-1-kitchen.webp?v=1b3ae4da" as="image" media="(min-width: 768px)" fetchpriority="high">
+  <link rel="stylesheet" href="assets/css/styles.min.css?v=0a87879379">
+</head>
+<body>
+  <div id="pl" aria-hidden="true">
+    <div class="pl-box">
+      <span class="pl-mark">К<em>л</em></span>
+      <span class="pl-name">Клининг Левкин</span>
+    </div>
+    <span class="pl-blade"></span>
+  </div>
+  <style>
+    /* Заставка: белая вуаль, знак «протирается» слева направо, как стекло под сгоном.
+       Снимается, когда готовы шрифты, страница и фон первого экрана, не раньше минимума
+       и не позже 3,5 с. Второй заход в сессии - коротко. Без JS и при reduced-motion
+       вуали нет. Страховка на CSS: через 6 с исчезает сама. */
+    html:not(.js) #pl{display:none}
+    #pl{position:fixed;inset:0;z-index:9999;background:#fff;display:flex;align-items:center;justify-content:center;
+      transition:opacity .7s cubic-bezier(.2,.7,.2,1),visibility .7s;animation:plKill 0s linear 6s forwards}
+    #pl.pl--out{opacity:0;visibility:hidden;pointer-events:none}
+    .pl-box{display:flex;flex-direction:column;align-items:center;gap:14px;
+      -webkit-mask-image:linear-gradient(90deg,#000 0,#000 45%,transparent 55%,transparent 100%);mask-image:linear-gradient(90deg,#000 0,#000 45%,transparent 55%,transparent 100%);
+      -webkit-mask-size:240% 100%;mask-size:240% 100%;-webkit-mask-position:100% 0;mask-position:100% 0;
+      animation:plWipe .8s cubic-bezier(.65,.05,.25,1) .05s forwards}
+    .pl-mark{font:600 64px/1 'Onest',system-ui,sans-serif;letter-spacing:-.05em;color:#0E1A21}
+    .pl-mark em{font-style:normal;color:#0B7A75}
+    .pl-name{font:600 11px/1 'Onest',system-ui,sans-serif;letter-spacing:.32em;text-transform:uppercase;color:#44535B}
+    .pl-blade{position:absolute;left:50%;top:50%;width:2px;height:132px;margin:-66px 0 0 -1px;background:#0B7A75;
+      opacity:0;transform:translateX(-150px);animation:plBlade .8s cubic-bezier(.65,.05,.25,1) .05s forwards}
+    #pl.pl--quick .pl-box,#pl.pl--quick .pl-blade{animation-duration:.45s;animation-delay:0s}
+    @keyframes plWipe{to{-webkit-mask-position:0 0;mask-position:0 0}}
+    @keyframes plBlade{0%{opacity:0;transform:translateX(-150px)}15%{opacity:1}85%{opacity:1}100%{opacity:0;transform:translateX(150px)}}
+    @keyframes plKill{to{opacity:0;visibility:hidden;pointer-events:none}}
+    @media(prefers-reduced-motion:reduce){#pl{display:none}}
+    html.js:not(.pl-done) body>*:not(#pl){opacity:0;animation:plShow 0s linear 6.2s forwards}
+    @keyframes plShow{to{opacity:1}}
+    html.js.pl-done body>*:not(#pl):not(.mobile-menu){animation:bodyIn .5s cubic-bezier(.2,.7,.2,1) backwards}
+    @keyframes bodyIn{from{opacity:0}to{opacity:1}}
+    @media(prefers-reduced-motion:reduce){html.js:not(.pl-done) body>*:not(#pl){opacity:1;animation:none}}
+  </style>
+  <script>
+  (function(){
+    var d=document.documentElement; d.classList.add('js');
+    var pl=document.getElementById('pl'); if(!pl) return;
+    var quick=false; try{ quick=sessionStorage.getItem('pl_seen')==='1'; }catch(e){}
+    if(quick) pl.classList.add('pl--quick');
+    var rm=window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    // отсчёт от начала загрузки страницы, а не от момента, когда дошёл этот скрипт
+    var t0=(window.performance&&performance.timing&&performance.timing.navigationStart)||Date.now();
+    var minMs=rm?0:(quick?300:850), start=t0, ready=rm, out=false;
+    function done(){
+      if(out) return; out=true;
+      pl.classList.add('pl--out'); d.classList.add('pl-done');
+      try{ sessionStorage.setItem('pl_seen','1'); }catch(e){}
+      setTimeout(function(){ if(pl.parentNode) pl.parentNode.removeChild(pl); },900);
+    }
+    function tick(){ var el=Date.now()-start; if(ready&&el>=minMs) done(); else setTimeout(tick,Math.max(40,minMs-el)); }
+    var waits=[];
+    if(document.fonts&&document.fonts.ready) waits.push(document.fonts.ready);
+    waits.push(new Promise(function(r){ if(document.readyState==='complete') r(); else window.addEventListener('load',r,{once:true}); }));
+    var bg=document.querySelector('[data-preload]');
+    if(bg){ waits.push(new Promise(function(r){ var src=bg.getAttribute('data-preload');
+      if(window.matchMedia('(max-width: 767px)').matches) src=src.replace('.webp','-portrait.webp');
+      var i=new Image(); i.onload=i.onerror=r; i.src=src; })); }
+    Promise.all(waits).then(function(){ ready=true; },function(){ ready=true; });
+    setTimeout(function(){ ready=true; },Math.max(0,2500-(Date.now()-t0)));
+    tick();
+  })();
+  </script>
+
+  <header class="hero" id="hero">
+    <div class="hero-bg" id="hero-bg" data-preload="assets/img/hero/hero-1-kitchen.webp?v=1b3ae4da"></div>
+
+    <a class="mono" href="#hero" aria-label="Клининг Левкин - на главную">
+      <span class="mono-mark">К<em>л</em></span>
+      <span class="mono-name">Клининг Левкин</span>
+    </a>
+
+    <nav class="topnav" aria-label="главная навигация">
+      <a href="#services">услуги</a>
+      <a href="#process">как работаем</a>
+      <a href="#price">стоимость</a>
+      <a href="#objects">помещения</a>
+      <a href="#footer">контакты</a>
+      <a class="btn btn-main btn-sm" href="#contact">оставить заявку</a>
+      <a class="btn btn-ghost btn-sm" href="pay.html">оплата</a>
+      <button class="hamburger" id="hamburger" type="button" aria-label="меню" aria-expanded="false" aria-controls="mobile-menu">
+        <span></span><span></span><span></span>
+      </button>
+    </nav>
+
+    <div class="hero-content">
+      <p class="eyebrow eyebrow-light">клининг · Москва и область</p>
+      <h1>Уборка <em>под ключ</em></h1>
+      <p class="hero-sub">Жилые, коммерческие и производственные помещения: квартиры и дома, офисы, цеха и склады.</p>
+      <div class="hero-cta">
+        <a class="btn btn-main" href="#contact">оставить заявку</a>
+        <a class="hero-link" href="#services">смотреть услуги -&gt;</a>
+      </div>
+    </div>
+
+    <div class="hero-meta">
+      <p class="hero-cap" id="hero-cap">кухни и квартиры</p>
+      <div class="hero-dots" id="hero-dots" role="tablist" aria-label="фото объектов">
+        <button class="d active" type="button" role="tab" aria-selected="true" data-i="0" aria-label="фото 1"></button>
+        <button class="d" type="button" role="tab" aria-selected="false" data-i="1" aria-label="фото 2"></button>
+        <button class="d" type="button" role="tab" aria-selected="false" data-i="2" aria-label="фото 3"></button>
+        <button class="d" type="button" role="tab" aria-selected="false" data-i="3" aria-label="фото 4"></button>
+        <span class="counter"><span id="hero-cur">01</span> / 04</span>
+      </div>
+    </div>
+  </header>
+
+  <div class="mobile-menu" id="mobile-menu" hidden>
+    <div class="mm-top">
+      <span class="mono-mark">К<em>л</em></span>
+      <button class="mm-close" id="mm-close" type="button" aria-label="закрыть меню"><span></span><span></span></button>
+    </div>
+    <a href="#services">услуги</a>
+    <a href="#process">как работаем</a>
+    <a href="#price">стоимость</a>
+    <a href="#objects">помещения</a>
+    <a href="#footer">контакты</a>
+    <a class="btn btn-main" href="#contact">оставить заявку</a>
+    <a class="btn btn-ghost" href="pay.html">оплата</a>
+  </div>
+
+  <main>
+    <section class="s about" id="about" aria-labelledby="about-h2">
+      <div class="about-grid">
+        <figure class="about-photo rv">
+          <picture class="fade">
+            <source type="image/avif" srcset="assets/img/about/about-floor@mobile.avif?v=c635701b 500w, assets/img/about/about-floor.avif?v=392d78a1 1000w" sizes="(max-width: 1023px) 480px, 42vw">
+            <source type="image/webp" srcset="assets/img/about/about-floor@mobile.webp?v=9b53a733 500w, assets/img/about/about-floor.webp?v=238a94a3 1000w" sizes="(max-width: 1023px) 480px, 42vw">
+            <img src="assets/img/about/about-floor.jpg?v=71e966cd" alt="поломоечная машина в коридоре офисного здания" loading="lazy" decoding="async" width="1000" height="1250">
+          </picture>
+        </figure>
+        <div class="about-body">
+          <h2 id="about-h2" class="rv">Убираем дома, в офисах <em>и на производстве</em></h2>
+          <p class="about-lead rv">«Клининг Левкин» - клининг для квартир, домов и предприятий. Убираем квартиры, дома, офисы, цеха и склады: поддерживающая и генеральная уборка, уборка после ремонта.</p>
+          <ul class="features">
+            <li class="rv">
+              <strong>Жилые помещения</strong>
+              <span>Квартиры, дома и апартаменты, разово или по графику</span>
+            </li>
+            <li class="rv">
+              <strong>Производственные</strong>
+              <span>Цеха, склады, административные и бытовые помещения</span>
+            </li>
+            <li class="rv">
+              <strong>В удобное время</strong>
+              <span>Вечером, в выходные или между сменами, чтобы не мешать работе</span>
+            </li>
+            <li class="rv">
+              <strong>Оплата на сайте</strong>
+              <span>По СБП через QR-код, чек приходит на почту</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="s services" id="services" aria-labelledby="services-h2">
+      <div class="s-head">
+        <h2 id="services-h2" class="rv">Что мы <em>убираем</em></h2>
+      </div>
+      <div class="svc-grid">
+        <a class="svc svc-wide rv" href="#contact" data-object="flat">
+          <picture class="fade">
+            <source type="image/avif" srcset="assets/img/services/svc-1-home@mobile.avif?v=eb549763 800w, assets/img/services/svc-1-home.avif?v=2469caf9 1600w" sizes="(max-width: 767px) 100vw, 66vw">
+            <source type="image/webp" srcset="assets/img/services/svc-1-home@mobile.webp?v=f92bd3b0 800w, assets/img/services/svc-1-home.webp?v=9e265ed6 1600w" sizes="(max-width: 767px) 100vw, 66vw">
+            <img src="assets/img/services/svc-1-home.jpg?v=294a1743" alt="светлая кухня с островом и обеденной зоной" loading="lazy" decoding="async" width="1600" height="1000">
+          </picture>
+          <div class="svc-body">
+            <p class="svc-tag">жилые помещения</p>
+            <h3>Квартиры и дома</h3>
+            <p class="svc-desc">Поддерживающая и генеральная уборка: кухня, санузлы, комнаты, окна</p>
+          </div>
+        </a>
+        <a class="svc rv" href="#contact" data-object="renovation">
+          <picture class="fade">
+            <source type="image/avif" srcset="assets/img/services/svc-2-renovation@mobile.avif?v=7d69be73 400w, assets/img/services/svc-2-renovation.avif?v=4be99234 800w" sizes="(max-width: 767px) 100vw, (max-width: 1023px) 50vw, 33vw">
+            <source type="image/webp" srcset="assets/img/services/svc-2-renovation@mobile.webp?v=96824b84 400w, assets/img/services/svc-2-renovation.webp?v=6781a104 800w" sizes="(max-width: 767px) 100vw, (max-width: 1023px) 50vw, 33vw">
+            <img src="assets/img/services/svc-2-renovation.jpg?v=f2d7c055" alt="светлая комната с паркетом после ремонта" loading="lazy" decoding="async" width="800" height="1000">
+          </picture>
+          <div class="svc-body">
+            <p class="svc-tag">жилые и коммерческие</p>
+            <h3>После ремонта</h3>
+            <p class="svc-desc">Строительная пыль, следы затирки и краски, окна, плинтусы и двери</p>
+          </div>
+        </a>
+        <a class="svc rv" href="#contact" data-object="office">
+          <picture class="fade">
+            <source type="image/avif" srcset="assets/img/services/svc-3-office@mobile.avif?v=41ae66b7 400w, assets/img/services/svc-3-office.avif?v=b2b19ebd 800w" sizes="(max-width: 767px) 100vw, (max-width: 1023px) 50vw, 33vw">
+            <source type="image/webp" srcset="assets/img/services/svc-3-office@mobile.webp?v=45024613 400w, assets/img/services/svc-3-office.webp?v=15e0aa73 800w" sizes="(max-width: 767px) 100vw, (max-width: 1023px) 50vw, 33vw">
+            <img src="assets/img/services/svc-3-office.jpg?v=51eb5c34" alt="переговорная с белым столом и стульями" loading="lazy" decoding="async" width="800" height="1000">
+          </picture>
+          <div class="svc-body">
+            <p class="svc-tag">коммерческие</p>
+            <h3>Офисы</h3>
+            <p class="svc-desc">Ежедневно или по графику: рабочие места, переговорные, кухни и санузлы</p>
+          </div>
+        </a>
+        <a class="svc rv" href="#contact" data-object="production">
+          <picture class="fade">
+            <source type="image/avif" srcset="assets/img/services/svc-4-production@mobile.avif?v=b80e6c85 400w, assets/img/services/svc-4-production.avif?v=80780190 800w" sizes="(max-width: 767px) 100vw, (max-width: 1023px) 50vw, 33vw">
+            <source type="image/webp" srcset="assets/img/services/svc-4-production@mobile.webp?v=4475104f 400w, assets/img/services/svc-4-production.webp?v=b422d28c 800w" sizes="(max-width: 767px) 100vw, (max-width: 1023px) 50vw, 33vw">
+            <img src="assets/img/services/svc-4-production.jpg?v=4ba946ec" alt="производственный цех с краном-балкой" loading="lazy" decoding="async" width="800" height="1000">
+          </picture>
+          <div class="svc-body">
+            <p class="svc-tag">производственные</p>
+            <h3>Цеха</h3>
+            <p class="svc-desc">Полы и проходы, рабочие зоны, бытовки и санузлы персонала</p>
+          </div>
+        </a>
+        <a class="svc rv" href="#contact" data-object="warehouse">
+          <picture class="fade">
+            <source type="image/avif" srcset="assets/img/services/svc-5-warehouse@mobile.avif?v=606ec880 400w, assets/img/services/svc-5-warehouse.avif?v=81d11d17 800w" sizes="(max-width: 767px) 100vw, (max-width: 1023px) 50vw, 33vw">
+            <source type="image/webp" srcset="assets/img/services/svc-5-warehouse@mobile.webp?v=95714685 400w, assets/img/services/svc-5-warehouse.webp?v=31802546 800w" sizes="(max-width: 767px) 100vw, (max-width: 1023px) 50vw, 33vw">
+            <img src="assets/img/services/svc-5-warehouse.jpg?v=0ace0760" alt="проход между стеллажами склада" loading="lazy" decoding="async" width="800" height="1000">
+          </picture>
+          <div class="svc-body">
+            <p class="svc-tag">производственные</p>
+            <h3>Склады</h3>
+            <p class="svc-desc">Полы, стеллажи и зоны погрузки, без остановки отгрузок</p>
+          </div>
+        </a>
+      </div>
+    </section>
+
+    <section class="s process" id="process" aria-labelledby="process-h2">
+      <div class="s-head">
+        <h2 id="process-h2" class="rv">Как мы <em>работаем</em></h2>
+      </div>
+      <ol class="steps">
+        <li class="step rv">
+          <span class="step-num" aria-hidden="true">1</span>
+          <h3>Заявка</h3>
+          <p class="step-desc">Оставляете заявку на сайте или звоните</p>
+        </li>
+        <li class="step rv">
+          <span class="step-num" aria-hidden="true">2</span>
+          <h3>Оценка</h3>
+          <p class="step-desc">Уточняем объект и объём, при необходимости приезжаем на осмотр</p>
+        </li>
+        <li class="step rv">
+          <span class="step-num" aria-hidden="true">3</span>
+          <h3>Смета</h3>
+          <p class="step-desc">Называем стоимость и время работ до начала уборки</p>
+        </li>
+        <li class="step rv">
+          <span class="step-num" aria-hidden="true">4</span>
+          <h3>Уборка</h3>
+          <p class="step-desc">Приезжаем в согласованное время и работаем по чек-листу</p>
+        </li>
+        <li class="step rv">
+          <span class="step-num" aria-hidden="true">5</span>
+          <h3>Приёмка</h3>
+          <p class="step-desc">Проверяете результат вместе с нами и оплачиваете</p>
+        </li>
+      </ol>
+    </section>
+
+    <section class="s price" id="price" aria-labelledby="price-h2">
+      <div class="price-grid">
+        <div class="price-intro">
+          <p class="eyebrow rv">стоимость</p>
+          <h2 id="price-h2" class="rv">Из чего складывается <em>цена</em></h2>
+          <p class="price-note rv">Точную сумму назовём после заявки, когда уточним объект, площадь и объём работ.</p>
+          <div class="price-actions rv">
+            <a class="btn btn-main" href="#contact">оставить заявку</a>
+            <a class="btn btn-outline" href="pay.html">оплатить онлайн</a>
+          </div>
+        </div>
+        <ol class="factors">
+          <li class="factor rv">
+            <h3>Тип помещения</h3>
+            <p>Квартира или дом, офис, цех, склад</p>
+          </li>
+          <li class="factor rv">
+            <h3>Площадь</h3>
+            <p>Считаем по квадратным метрам, для производства - по зонам</p>
+          </li>
+          <li class="factor rv">
+            <h3>Вид уборки</h3>
+            <p>Поддерживающая, генеральная или после ремонта</p>
+          </li>
+          <li class="factor rv">
+            <h3>Состояние и сроки</h3>
+            <p>Степень загрязнения, срочность, работа ночью или в выходные</p>
+          </li>
+        </ol>
+      </div>
+      <!--
+        Прайс от заказчика вставляется сюда, разметка готова:
+        <div class="price-table">
+          <div class="price-row"><div class="price-name"><h3>Поддерживающая уборка</h3><p>квартира до 50 м²</p></div><p class="price-amount">от 0 000 ₽</p></div>
+        </div>
+      -->
+    </section>
+
+    <section class="s scope" id="scope" aria-labelledby="scope-h2">
+      <div class="s-head">
+        <h2 id="scope-h2" class="rv">Что входит в <em>генеральную уборку</em></h2>
+      </div>
+      <div class="scope-grid">
+        <article class="scope-col rv">
+          <h3>Кухня</h3>
+          <ul>
+            <li>Фасады и столешницы</li>
+            <li>Плита, вытяжка и духовка снаружи</li>
+            <li>Мойка и смеситель</li>
+            <li>Холодильник и техника снаружи</li>
+            <li>Пол и плинтусы</li>
+          </ul>
+        </article>
+        <article class="scope-col rv">
+          <h3>Санузел</h3>
+          <ul>
+            <li>Ванна, душевая и раковина</li>
+            <li>Унитаз снаружи и внутри</li>
+            <li>Плитка и швы</li>
+            <li>Зеркала и смесители</li>
+            <li>Пол и двери</li>
+          </ul>
+        </article>
+        <article class="scope-col rv">
+          <h3>Комнаты</h3>
+          <ul>
+            <li>Пыль со всех доступных поверхностей</li>
+            <li>Мебель снаружи</li>
+            <li>Зеркала и стёкла</li>
+            <li>Ковры пылесосом</li>
+            <li>Влажная уборка пола</li>
+          </ul>
+        </article>
+        <article class="scope-col rv">
+          <h3>Окна</h3>
+          <ul>
+            <li>Стёкла с двух сторон</li>
+            <li>Рамы и уплотнители</li>
+            <li>Подоконники и откосы</li>
+            <li>Отливы и москитные сетки</li>
+          </ul>
+        </article>
+      </div>
+      <p class="scope-note rv">Состав работ для офисов, цехов и складов согласуем отдельно под объект.</p>
+    </section>
+
+    <section class="s objects" id="objects" aria-labelledby="objects-h2">
+      <div class="s-head">
+        <h2 id="objects-h2" class="rv">Какие помещения <em>убираем</em></h2>
+      </div>
+      <div class="gal-grid" id="gallery-grid">
+        <button class="gal rv" type="button" data-i="0" aria-label="увеличить фото: гостиные">
+          <picture class="fade">
+            <source type="image/avif" srcset="assets/img/gallery/gal-1-living@mobile.avif?v=07e01a7a 600w, assets/img/gallery/gal-1-living.avif?v=debb62bb 1200w" sizes="(max-width: 767px) 100vw, (max-width: 1023px) 50vw, 33vw">
+            <source type="image/webp" srcset="assets/img/gallery/gal-1-living@mobile.webp?v=900c4bec 600w, assets/img/gallery/gal-1-living.webp?v=103b4070 1200w" sizes="(max-width: 767px) 100vw, (max-width: 1023px) 50vw, 33vw">
+            <img src="assets/img/gallery/gal-1-living.jpg?v=a5083786" alt="гостиная с видом на город" loading="lazy" decoding="async" width="1200" height="900">
+          </picture>
+          <span class="gal-cap">гостиные</span>
+        </button>
+        <button class="gal rv" type="button" data-i="1" aria-label="увеличить фото: санузлы">
+          <picture class="fade">
+            <source type="image/avif" srcset="assets/img/gallery/gal-2-bathroom@mobile.avif?v=259479f4 600w, assets/img/gallery/gal-2-bathroom.avif?v=5bf4a9ce 1200w" sizes="(max-width: 767px) 100vw, (max-width: 1023px) 50vw, 33vw">
+            <source type="image/webp" srcset="assets/img/gallery/gal-2-bathroom@mobile.webp?v=c583cdb0 600w, assets/img/gallery/gal-2-bathroom.webp?v=cf0f2a20 1200w" sizes="(max-width: 767px) 100vw, (max-width: 1023px) 50vw, 33vw">
+            <img src="assets/img/gallery/gal-2-bathroom.jpg?v=a93c54a7" alt="раковина и смеситель на фоне плитки" loading="lazy" decoding="async" width="1200" height="900">
+          </picture>
+          <span class="gal-cap">санузлы</span>
+        </button>
+        <button class="gal rv" type="button" data-i="2" aria-label="увеличить фото: спальни">
+          <picture class="fade">
+            <source type="image/avif" srcset="assets/img/gallery/gal-3-bedroom@mobile.avif?v=6e355987 600w, assets/img/gallery/gal-3-bedroom.avif?v=f0b536c8 1200w" sizes="(max-width: 767px) 100vw, (max-width: 1023px) 50vw, 33vw">
+            <source type="image/webp" srcset="assets/img/gallery/gal-3-bedroom@mobile.webp?v=47224ae5 600w, assets/img/gallery/gal-3-bedroom.webp?v=d0fd7557 1200w" sizes="(max-width: 767px) 100vw, (max-width: 1023px) 50vw, 33vw">
+            <img src="assets/img/gallery/gal-3-bedroom.jpg?v=57545bb7" alt="светлая спальня у окна" loading="lazy" decoding="async" width="1200" height="900">
+          </picture>
+          <span class="gal-cap">спальни</span>
+        </button>
+        <button class="gal rv" type="button" data-i="3" aria-label="увеличить фото: переговорные">
+          <picture class="fade">
+            <source type="image/avif" srcset="assets/img/gallery/gal-4-meeting@mobile.avif?v=45573f48 600w, assets/img/gallery/gal-4-meeting.avif?v=27ac61ce 1200w" sizes="(max-width: 767px) 100vw, (max-width: 1023px) 50vw, 33vw">
+            <source type="image/webp" srcset="assets/img/gallery/gal-4-meeting@mobile.webp?v=1f51b289 600w, assets/img/gallery/gal-4-meeting.webp?v=a3011e90 1200w" sizes="(max-width: 767px) 100vw, (max-width: 1023px) 50vw, 33vw">
+            <img src="assets/img/gallery/gal-4-meeting.jpg?v=88d44e93" alt="переговорная с длинным белым столом" loading="lazy" decoding="async" width="1200" height="900">
+          </picture>
+          <span class="gal-cap">переговорные</span>
+        </button>
+        <button class="gal rv" type="button" data-i="4" aria-label="увеличить фото: окна">
+          <picture class="fade">
+            <source type="image/avif" srcset="assets/img/gallery/gal-5-windows@mobile.avif?v=b2337151 600w, assets/img/gallery/gal-5-windows.avif?v=08b82597 1200w" sizes="(max-width: 767px) 100vw, (max-width: 1023px) 50vw, 33vw">
+            <source type="image/webp" srcset="assets/img/gallery/gal-5-windows@mobile.webp?v=3e4811c8 600w, assets/img/gallery/gal-5-windows.webp?v=97267a3c 1200w" sizes="(max-width: 767px) 100vw, (max-width: 1023px) 50vw, 33vw">
+            <img src="assets/img/gallery/gal-5-windows.jpg?v=db6ee2b3" alt="большие окна со светлыми шторами" loading="lazy" decoding="async" width="1200" height="900">
+          </picture>
+          <span class="gal-cap">окна</span>
+        </button>
+        <button class="gal rv" type="button" data-i="5" aria-label="увеличить фото: лестницы и холлы">
+          <picture class="fade">
+            <source type="image/avif" srcset="assets/img/gallery/gal-6-stairs@mobile.avif?v=2adf07e9 600w, assets/img/gallery/gal-6-stairs.avif?v=4845314c 1200w" sizes="(max-width: 767px) 100vw, (max-width: 1023px) 50vw, 33vw">
+            <source type="image/webp" srcset="assets/img/gallery/gal-6-stairs@mobile.webp?v=aab92ea0 600w, assets/img/gallery/gal-6-stairs.webp?v=edfc1fe2 1200w" sizes="(max-width: 767px) 100vw, (max-width: 1023px) 50vw, 33vw">
+            <img src="assets/img/gallery/gal-6-stairs.jpg?v=7d9ec984" alt="бетонная лестница в холле" loading="lazy" decoding="async" width="1200" height="900">
+          </picture>
+          <span class="gal-cap">лестницы и холлы</span>
+        </button>
+      </div>
+    </section>
+
+    <section class="s cta-mid" id="cta" aria-label="заявка на расчёт">
+      <div class="cta-mid-inner rv">
+        <h2>Посчитаем уборку <em>под ваш объект</em></h2>
+        <a class="btn btn-main" href="#contact">оставить заявку</a>
+      </div>
+    </section>
+
+    <section class="s form" id="contact" aria-labelledby="form-h2">
+      <div class="s-head">
+        <div>
+          <p class="eyebrow rv">заявка</p>
+          <h2 id="form-h2" class="rv">Расскажите, что нужно <em>убрать</em></h2>
+        </div>
+      </div>
+      <div class="form-grid">
+        <figure class="form-photo rv">
+          <picture class="fade">
+            <source type="image/avif" srcset="assets/img/form/form-living@mobile.avif?v=5be247c3 450w, assets/img/form/form-living.avif?v=e7c88c15 900w" sizes="(max-width: 1023px) 480px, 40vw">
+            <source type="image/webp" srcset="assets/img/form/form-living@mobile.webp?v=a4381a55 450w, assets/img/form/form-living.webp?v=930c92c1 900w" sizes="(max-width: 1023px) 480px, 40vw">
+            <img src="assets/img/form/form-living.jpg?v=2ead0a27" alt="журнальный столик в светлой гостиной" loading="lazy" decoding="async" width="900" height="1125">
+          </picture>
+        </figure>
+        <form class="form-body" id="lead-form" method="post" action="api/lead" novalidate>
+          <p class="form-lead">Перезвоним, уточним детали и назовём стоимость.</p>
+
+          <div class="hp" aria-hidden="true">
+            <label>Не заполняйте <input type="text" name="website" tabindex="-1" autocomplete="off"></label>
+          </div>
+
+          <div class="form-row">
+            <label class="field">
+              <span>Имя</span>
+              <input type="text" name="name" required maxlength="100" autocomplete="name">
+            </label>
+            <label class="field">
+              <span>Телефон</span>
+              <input type="tel" name="phone" required maxlength="40" autocomplete="tel" inputmode="tel" placeholder="+7 900 000-00-00">
+            </label>
+          </div>
+          <div class="form-row">
+            <label class="field">
+              <span>Что убрать</span>
+              <select name="object" required>
+                <option value="">выберите</option>
+                <option value="flat">Квартира или дом</option>
+                <option value="office">Офис</option>
+                <option value="production">Производственное помещение</option>
+                <option value="warehouse">Склад</option>
+                <option value="renovation">После ремонта или стройки</option>
+                <option value="other">Другое</option>
+              </select>
+            </label>
+            <label class="field">
+              <span>Площадь, м² <i>(если знаете)</i></span>
+              <input type="text" name="area" inputmode="decimal" maxlength="9" placeholder="например, 65">
+            </label>
+          </div>
+          <label class="field form-wide">
+            <span>Когда удобно <i>(необязательно)</i></span>
+            <input type="text" name="when" maxlength="80" placeholder="дата или «на этой неделе»">
+          </label>
+          <label class="field form-wide">
+            <span>Комментарий <i>(необязательно)</i></span>
+            <textarea name="comment" rows="3" maxlength="2000" placeholder="адрес или район, этаж, особенности объекта"></textarea>
+          </label>
+
+          <label class="consent">
+            <input type="checkbox" name="consent" required>
+            <span>Даю <a href="consent.html" target="_blank" rel="noopener">согласие на обработку персональных данных</a> на условиях <a href="policy.html" target="_blank" rel="noopener">политики</a>.</span>
+          </label>
+
+          <div class="form-cta">
+            <button type="submit" class="btn btn-main" id="form-submit">отправить заявку</button>
+          </div>
+          <p class="form-status" id="form-status" role="status" aria-live="polite"></p>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <footer class="foot" id="footer">
+    <div class="foot-grid">
+      <div class="foot-brand">
+        <p class="foot-mono">К<em>л</em></p>
+        <p class="foot-tag">«Клининг Левкин» - уборка квартир, домов, офисов и производственных помещений. Москва и Московская область.</p>
+      </div>
+      <div class="foot-col">
+        <h4>связь</h4>
+        <a href="index.html#contact">+7 (000) 000-00-00</a>
+        
+        
+        
+        <span class="foot-pending">почта появится после запуска</span>
+        
+      </div>
+      <div class="foot-col">
+        <h4>разделы</h4>
+        <a href="#services">услуги</a>
+        <a href="#process">как работаем</a>
+        <a href="#price">стоимость</a>
+        <a href="#objects">помещения</a>
+        <a href="#contact">заявка</a>
+        <a href="pay.html">оплата</a>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>© 2026 Клининг Левкин · ИП Левкин</span>
+      <a href="policy.html">Политика обработки персональных данных</a>
+      <a href="offer.html">Договор-оферта</a>
+      <a href="consent.html">Согласие на обработку данных</a>
+    </div>
+  </footer>
+
+  
+  <script>window.SITE_DEMO=true</script>
+  <script type="module" src="assets/js/main.min.js?v=75cb26e207"></script>
+</body>
+</html>

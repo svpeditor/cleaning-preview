@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Оплата по СБП - Клининг Левкин</title>
+  <meta name="description" content="Онлайн-оплата клининговых услуг по СБП. Чек придёт на email.">
+  <meta name="robots" content="noindex">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="favicon.ico" sizes="32x32">
+  <link rel="apple-touch-icon" href="apple-touch-icon.png">
+  <meta name="theme-color" content="#0B7A75">
+  
+  <link rel="preload" href="assets/fonts/onest-var-cyrillic.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="assets/css/styles.min.css?v=0a87879379">
+</head>
+<body>
+  <header class="topbar">
+    <a class="topbar-logo" href="index.html" aria-label="Клининг Левкин - на главную">
+      <span class="mono-mark">К<em>л</em></span>
+      <span class="mono-name">Клининг Левкин</span>
+    </a>
+    <a class="topbar-back" href="index.html">на главную</a>
+  </header>
+
+  <main>
+    <section class="s form" id="pay" aria-labelledby="pay-h2">
+      <div class="s-head">
+        <div>
+          <p class="eyebrow">оплата</p>
+          <h1 id="pay-h2">Оплата <em>по СБП</em></h1>
+        </div>
+      </div>
+      <div class="form-grid">
+        <figure class="form-photo pay-photo">
+          <picture class="fade">
+            <source type="image/avif" srcset="assets/img/pay/pay-desk@mobile.avif?v=93291064 450w, assets/img/pay/pay-desk.avif?v=7f97feba 900w" sizes="(max-width: 1023px) 480px, 40vw">
+            <source type="image/webp" srcset="assets/img/pay/pay-desk@mobile.webp?v=ba7c48f5 450w, assets/img/pay/pay-desk.webp?v=03831b7c 900w" sizes="(max-width: 1023px) 480px, 40vw">
+            <img src="assets/img/pay/pay-desk.jpg?v=1ace7497" alt="светлая комната с диваном" decoding="async" width="900" height="1125">
+          </picture>
+        </figure>
+        <form class="form-body" id="pay-form" novalidate>
+          <div id="pay-fields">
+            <p class="form-lead">Введите сумму, согласованную с менеджером. QR-код появится на этой странице: отсканируйте его камерой телефона или в приложении банка.</p>
+
+            <div class="hp" aria-hidden="true">
+              <label>Не заполняйте <input type="text" name="website" tabindex="-1" autocomplete="off"></label>
+            </div>
+
+            <div class="form-row">
+              <label class="field">
+                <span>Сумма, ₽</span>
+                <input type="text" inputmode="decimal" name="amount" required maxlength="12" placeholder="например, 5000">
+              </label>
+              <label class="field">
+                <span>Email для чека</span>
+                <input type="email" name="email" required maxlength="64" autocomplete="email" placeholder="you@mail.ru">
+              </label>
+            </div>
+            <div class="form-row">
+              <label class="field">
+                <span>Имя</span>
+                <input type="text" name="name" required maxlength="100" autocomplete="name">
+              </label>
+              <label class="field">
+                <span>Телефон <i>(необязательно)</i></span>
+                <input type="tel" name="phone" maxlength="40" autocomplete="tel" inputmode="tel" placeholder="+7 900 000-00-00">
+              </label>
+            </div>
+            <label class="field form-wide" id="pay-manager-field" hidden>
+              <span>Сотрудник</span>
+              <select name="manager">
+                <option value="">выберите сотрудника</option>
+              </select>
+            </label>
+            <label class="field form-wide">
+              <span>Назначение <i>(необязательно)</i></span>
+              <input type="text" name="purpose" maxlength="120" placeholder="например, генеральная уборка 12.11">
+            </label>
+
+            <label class="consent">
+              <input type="checkbox" name="offer" required>
+              <span>Принимаю условия <a href="offer.html" target="_blank" rel="noopener">договора-оферты</a>.</span>
+            </label>
+            <label class="consent">
+              <input type="checkbox" name="consent" required>
+              <span>Даю <a href="consent.html" target="_blank" rel="noopener">согласие на обработку персональных данных</a> на условиях <a href="policy.html" target="_blank" rel="noopener">политики</a>.</span>
+            </label>
+
+            <div class="form-cta">
+              <button type="submit" class="btn btn-main" id="pay-submit" disabled>показать QR для оплаты</button>
+              <p class="form-note">Оплата через Систему быстрых платежей из приложения любого банка. Кассовый чек придёт на указанный email.</p>
+            </div>
+            <p class="form-status" id="pay-status" role="status" aria-live="polite"></p>
+          </div>
+
+          <div class="sbp-qr" id="sbp-qr" hidden>
+            <h2 class="sbp-qr-title" id="sbp-qr-title" tabindex="-1">QR для оплаты по СБП</h2>
+            <p class="sbp-qr-amount" id="sbp-qr-amount"></p>
+            <img class="sbp-qr-img" id="sbp-qr-img" alt="QR-код для оплаты по СБП" width="260" height="260">
+            <p class="sbp-qr-hint">Отсканируйте QR камерой телефона или в приложении банка. Если оплачиваете с этого телефона, откройте приложение банка кнопкой ниже.</p>
+            <a class="btn btn-main" id="sbp-qr-link" href="#" rel="noopener" hidden>открыть в приложении банка</a>
+            <p class="sbp-qr-state" id="sbp-qr-state" role="status" aria-live="polite">Ждём оплату...</p>
+            <p class="pay-demo" id="sbp-qr-demo" hidden>Превью: это демонстрационный QR, деньги не списываются. Настоящий появится после подключения эквайринга.</p>
+            <button type="button" class="btn btn-outline" id="sbp-qr-reset">новый QR</button>
+          </div>
+        </form>
+      </div>
+    </section>
+  </main>
+  <footer class="foot" id="footer">
+    <div class="foot-grid">
+      <div class="foot-brand">
+        <p class="foot-mono">К<em>л</em></p>
+        <p class="foot-tag">«Клининг Левкин» - уборка квартир, домов, офисов и производственных помещений. Москва и Московская область.</p>
+      </div>
+      <div class="foot-col">
+        <h4>связь</h4>
+        <a href="index.html#contact">+7 (000) 000-00-00</a>
+        
+        
+        
+        <span class="foot-pending">почта появится после запуска</span>
+        
+      </div>
+      <div class="foot-col">
+        <h4>разделы</h4>
+        <a href="index.html#services">услуги</a>
+        <a href="index.html#process">как работаем</a>
+        <a href="index.html#price">стоимость</a>
+        <a href="index.html#objects">помещения</a>
+        <a href="index.html#contact">заявка</a>
+        <a href="pay.html">оплата</a>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>© 2026 Клининг Левкин · ИП Левкин</span>
+      <a href="policy.html">Политика обработки персональных данных</a>
+      <a href="offer.html">Договор-оферта</a>
+      <a href="consent.html">Согласие на обработку данных</a>
+    </div>
+  </footer>
+
+  <script>window.SITE_DEMO=true</script>
+  <script type="module" src="assets/js/pay.min.js?v=821c3845c2"></script>
+</body>
+</html>
