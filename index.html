@@ -22,7 +22,7 @@
   <link rel="preload" href="assets/fonts/onest-var-latin.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="assets/img/hero/hero-1-kitchen-portrait.webp?v=10d0aec0" as="image" media="(max-width: 767px)" fetchpriority="high">
   <link rel="preload" href="assets/img/hero/hero-1-kitchen.webp?v=1b3ae4da" as="image" media="(min-width: 768px)" fetchpriority="high">
-  <link rel="stylesheet" href="assets/css/styles.min.css?v=0a87879379">
+  <link rel="stylesheet" href="assets/css/styles.min.css?v=b3fa272ed3">
 </head>
 <body>
   <div id="pl" aria-hidden="true">
@@ -34,7 +34,7 @@
       </div>
       <div class="pl-foot">
         <span>Москва и область</span>
-        <span class="pl-num" id="pl-num">000</span>
+        <span class="pl-num" id="pl-num">0</span>
       </div>
     </div>
   </div>
@@ -133,7 +133,7 @@
       var el=performance.now(), fin=ready&&el>=minMs;
       var t=fin?100:Math.min(94,22*got/Math.max(1,total)+72*(1-Math.exp(-(el-s0)/(quick?250:850))));
       v+=(t-v)*(fin?.22:.09); if(fin&&v>99.5) v=100;
-      num.textContent=('00'+Math.floor(v)).slice(-3);
+      num.textContent=String(Math.floor(v));
       fill.style.transform='scaleX('+(v/100).toFixed(4)+')';
       if(v===100){ out=true; setTimeout(leave,quick?40:160); return; }
       requestAnimationFrame(frame);
@@ -190,7 +190,7 @@
         <button class="d" type="button" role="tab" aria-selected="false" data-i="1" aria-label="фото 2"></button>
         <button class="d" type="button" role="tab" aria-selected="false" data-i="2" aria-label="фото 3"></button>
         <button class="d" type="button" role="tab" aria-selected="false" data-i="3" aria-label="фото 4"></button>
-        <span class="counter"><span id="hero-cur">01</span> / 04</span>
+        <span class="counter"><span id="hero-cur">1</span> / 4</span>
       </div>
     </div>
   </header>
@@ -602,6 +602,6 @@
 
   
   <script>window.SITE_DEMO=true</script>
-  <script type="module" src="assets/js/main.min.js?v=75cb26e207"></script>
+  <script type="module" src="assets/js/main.min.js?v=42f1e00868"></script>
 </body>
 </html>
